@@ -52,37 +52,204 @@ nav_choice = st.sidebar.radio(
 # Module 1: Home & Overview
 # -------------------------------------------------------------------
 if nav_choice == "1. Home & Overview":
-    st.title(" Network Intrusion Detection System (IDS)")
-    st.markdown("An AI-powered cybersecurity solution for identifying malicious network traffic in real time.")
-    
+    # --- Modern AI Operations Center CSS Injection ---
+    st.markdown("""
+        <style>
+        /* Hero Banner Styling */
+        .hero-container {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            padding: 2.2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.12);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            max-width: 820px;
+            line-height: 1.6;
+        }
+
+        /* Feature Card Styling */
+        .feature-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.3rem;
+            height: 100%;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-title {
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+        .feature-desc {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # --- 1. Hero Header Banner ---
+    st.markdown("""
+        <div class="hero-container">
+            <span class="hero-badge">⚡ Real-Time Cyber Threat Intelligence</span>
+            <div class="hero-title">🛡️ Network Intrusion Detection System (IDS)</div>
+            <div class="hero-subtitle">
+                An end-to-end Machine Learning platform designed to detect, classify, and report malicious network traffic signatures in real time. Powered by standard Scikit-Learn pipelines, Random Forest classifiers, and Plotly executive analytics.
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # --- 2. Live System Telemetry Metrics ---
+    st.subheader("📊 System Telemetry & ML Status")
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Primary Dataset", "NSL-KDD")
-    col2.metric("Selected Features", "25 Engineered")
-    col3.metric("Primary Algorithm", model_bundle["model_name"] if model_bundle else "Not Trained")
-    col4.metric("System Status", "ONLINE 🟢" if model_bundle else "OFFLINE 🔴")
+    
+    col1.metric(label="Primary Dataset", value="NSL-KDD", delta="Benchmark")
+    col2.metric(label="Selected Features", value="25 Engineered", delta="Top Gini")
+    col3.metric(
+        label="Primary Algorithm", 
+        value=model_bundle["model_name"] if model_bundle else "Not Trained",
+        delta="Random Forest" if model_bundle else "Offline",
+        delta_color="normal" if model_bundle else "off"
+    )
+    col4.metric(
+        label="System Status", 
+        value="ONLINE 🟢" if model_bundle else "OFFLINE 🔴",
+        delta="Active" if model_bundle else "Requires Training",
+        delta_color="normal" if model_bundle else "inverse"
+    )
 
     st.markdown("---")
 
-    st.subheader(" System Architecture Workflow")
-    st.code("""
-    +-----------------------+     +--------------------------+     +---------------------------+
-    | Network Packet Data   | --> | Preprocessing & Scaling  | --> | Machine Learning Model    |
-    | (CSV / Log Capture)   |     | (LabelEnc + StandardScaler)|    | (Random Forest Classifier)|
-    +-----------------------+     +--------------------------+     +---------------------------+
-                                                                                 |
-                                                                                 v
-    +-----------------------+     +--------------------------+     +---------------------------+
-    | Security Reports      | <-- | Analytics & Charts       | <-- | Threat Detection Result   |
-    | (.TXT / .CSV Export)  |     | (Plotly Visualizations)  |     | (Normal vs Malicious)     |
-    +-----------------------+     +--------------------------+     +---------------------------+
-    """, language="text")
+    # --- 3. Key Capabilities Grid ---
+    st.subheader("🚀 Core Capabilities")
 
-    st.subheader(" Primary Objectives")
-    st.markdown("""
-    * **Automated Threat Detection**: Classify incoming network traffic into **Normal** or **Malicious** patterns.
-    * **Feature Reduction**: Focus on high-impact network statistical features like duration, byte count, and error rates.
-    * **Low False Positive Rate**: Ensure legitimate administrative traffic is not misflagged as security breaches.
-    """)
+    f_col1, f_col2 = st.columns(2)
+
+    with f_col1:
+        st.markdown("""
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Real-Time Threat Detection</div>
+                <div class="feature-desc">
+                    Infers live packet file uploads against trained decision boundary thresholds to instantly flag <b>Normal</b> vs <b>Malicious</b> network traffic.
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.write("")  # Spacer
+
+        st.markdown("""
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <div class="feature-title">Executive Analytics</div>
+                <div class="feature-desc">
+                    Generates interactive Plotly radar charts, packet scatter distributions, and ROC-AUC benchmarks for deep network traffic profiling.
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
+    with f_col2:
+        st.markdown("""
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <div class="feature-title">Automated Feature Pipeline</div>
+                <div class="feature-desc">
+                    Handles categorical LabelEncoding, StandardScaler normalization, and automatic fallback handling for unseen protocol types.
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.write("")  # Spacer
+
+        st.markdown("""
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <div class="feature-title">Incident Reporting & Audit</div>
+                <div class="feature-desc">
+                    Exports SOC-ready executive security summaries and tagged traffic logs in <code>.TXT</code> and <code>.CSV</code> formats for incident response.
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # --- 4. Interactive Tabs for Architecture, Objectives & Tech Stack ---
+    st.subheader("🧩 System Architecture & Strategy")
+
+    tab_arch, tab_obj, tab_tech = st.tabs([
+        "🔄 Architecture Workflow", 
+        "🎯 Primary Objectives", 
+        "🛠️ Tech Stack"
+    ])
+
+    with tab_arch:
+        st.code("""
++-----------------------+     +--------------------------+     +---------------------------+
+| Network Packet Data   | --> | Preprocessing & Scaling  | --> | Machine Learning Model    |
+| (CSV / Log Capture)   |     | (LabelEnc + StandardScaler)|    | (Random Forest Classifier)|
++-----------------------+     +--------------------------+     +---------------------------+
+                                                                             |
+                                                                             v
++-----------------------+     +--------------------------+     +---------------------------+
+| Security Reports      | <-- | Analytics & Charts       | <-- | Threat Detection Result   |
+| (.TXT / .CSV Export)  |     | (Plotly Visualizations)  |     | (Normal vs Malicious)     |
++-----------------------+     +--------------------------+     +---------------------------+
+        """, language="text")
+
+    with tab_obj:
+        st.markdown("""
+        * **Automated Threat Classification**: Instantly identify signature anomalies and malicious behavior across HTTP, TCP, UDP, and ICMP protocols.
+        * **Feature Optimization**: Reduce raw 41-feature inputs down to **25 high-impact statistical features** (focusing on duration, byte counts, and error flags).
+        * **Low False Positive Rate**: Maintain precise decision boundaries so benign administrative traffic is not misflagged as security breaches.
+        * **Operational Deployment**: Ensure end-to-end container readiness via Docker and continuous unit testing through Pytest.
+        """)
+
+    with tab_tech:
+        st.markdown("""
+        | Component | Technologies Used |
+        | :--- | :--- |
+        | **Frontend / UI** | Streamlit, HTML5, Custom CSS3 |
+        | **Machine Learning** | Scikit-Learn (Random Forest, Decision Tree, KNN, Logistic Regression) |
+        | **Data Engineering** | Pandas, NumPy, StandardScaler, LabelEncoder |
+        | **Visualizations** | Plotly Express, Plotly Graph Objects |
+        | **Testing & DevOps** | Pytest, Docker, Joblib |
+        """)
+
+    st.info("💡 **Quickstart**: Select **'4. Live Threat Prediction'** from the sidebar to upload network packet logs and run inference.")
 
 # -------------------------------------------------------------------
 # Module 2: Dataset Explorer
