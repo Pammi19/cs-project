@@ -222,6 +222,18 @@ elif nav_choice == "4. Live Threat Prediction":
                                 lambda s: le.transform([s])[0] if s in le.classes_ else 0
                             )
 
+                    # --- ADDED VALIDATION CHECK ---
+                    # Verify that all required model features exist in the uploaded CSV
+                    missing_features = [col for col in selected_features if col not in df_proc.columns]
+
+                    if missing_features:
+                        st.warning(
+                            f"⚠️ **Invalid Dataset Schema:** The uploaded CSV file is missing {len(missing_features)} expected feature columns "
+                            f"(such as: `{', '.join(missing_features[:3])}`). Please upload a valid NSL-KDD dataset file (e.g., `cleaned_test.csv`)."
+                        )
+                        st.stop()  # Safely halts execution without crashing the dashboard
+                    # ------------------------------
+
                     X_input = df_proc[selected_features].values
                     X_scaled = scaler.transform(X_input)
 
