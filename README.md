@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 # cs-project
+[![Intrusion Detection System CI](https://github.com/Pammi19/cs-project/actions/workflows/ci.yml/badge.svg)](https://github.com/Pammi19/cs-project/actions/workflows/ci.yml)
 =======
 # 🛡️ AI-Powered Network Intrusion Detection System (IDS)
 
